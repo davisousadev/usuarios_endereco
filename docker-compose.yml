@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   postgres:
@@ -20,6 +20,24 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    container_name: usuarios_endereco_api
+    restart: always
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/cadastro_db
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./packages/database/drizzle:/app/packages/database/drizzle
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - app-network
 
 volumes:
   pg_data:
