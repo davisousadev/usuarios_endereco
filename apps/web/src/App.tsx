@@ -51,8 +51,8 @@ function App() {
       });
 
       if (response.ok) {
-        fetchData(); // Atualiza a lista de usuários após o cadastro
-        event.currentTarget.reset(); // Limpa o formulário
+        fetchData();
+        event.currentTarget.reset();
       } else {
         console.error('Erro ao cadastrar usuário:', response.statusText);
       }
