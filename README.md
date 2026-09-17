@@ -41,8 +41,17 @@ Monorepo gerenciado com **pnpm workspace**, dividido em:
 - `POST /usuarios`: cria um novo usuário
 - `GET /usuarios`: lista todos os usuários cadastrados
 
-## Como executar com Docker
+## Pre-requisitos
 
+- `pnpm`
+
+## Execução local
+
+1. Instale dependências:
+
+```bash
+pnpm install
+```
 Na raiz do projeto:
 
 ```bash
@@ -54,35 +63,3 @@ Serviços disponíveis:
 - Web: `http://localhost`
 - API: `http://localhost:3000`
 - PostgreSQL: `localhost:5432`
-
-## Execução local (sem Docker)
-
-1. Instale dependências:
-
-```bash
-pnpm install
-```
-
-2. Configure a variável `DATABASE_URL` (exemplo):
-
-```env
-DATABASE_URL=******localhost:5432/cadastro_db
-```
-
-3. Rode as migrations:
-
-```bash
-pnpm --filter @usuarios_endereco/model db:migrate
-```
-
-4. Suba a API:
-
-```bash
-pnpm --filter @usuarios_endereco/controller dev
-```
-
-5. Em outro terminal, suba o front-end:
-
-```bash
-pnpm --filter @usuarios_endereco/view dev
-```
