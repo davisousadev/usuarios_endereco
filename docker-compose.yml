@@ -39,6 +39,21 @@ services:
     networks:
       - app-network
 
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+      args:
+        - VITE_API_URL=http://localhost:3000
+    container_name: usuarios_endereco_web
+    restart: always
+    ports:
+      - "80:80"
+    depends_on: 
+      - api
+    networks:
+      - app-network
+
 volumes:
   pg_data:
     driver: local
